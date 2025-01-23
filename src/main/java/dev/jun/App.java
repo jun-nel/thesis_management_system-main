@@ -25,7 +25,7 @@ public class App extends FXApplication {
     public void initialize() throws Exception  {
         setTitle("Thesis Main");
         setSkin(FXSkin.CUPERTINO_LIGHT);
-        applicationStage.setResizable(false);
+       // applicationStage.setResizable(false);
 
         initialize_dataset();
         initialize_application();
@@ -34,10 +34,11 @@ public class App extends FXApplication {
 
     public void initialize_dataset() {
 
-        COLLECTIONS_REGISTER.register("TBLTHESIS", FXCollections.observableList(TblthesisDAO.getTblthesislist()));
+       COLLECTIONS_REGISTER.register("TBLSTUDENT", FXCollections.observableArrayList(TblstudentDAO.getTblstudentlist()));
 
         COLLECTIONS_REGISTER.register("DEGREE", FXCollections.observableArrayList(DegreeDAO.getDegreelist()));
-        COLLECTIONS_REGISTER.register("TBLSTUDENT", FXCollections.observableArrayList(TblstudentDAO.getTblstudentlist()));
+        
+        COLLECTIONS_REGISTER.register("TBLTHESIS", FXCollections.observableList(TblthesisDAO.getTblthesislist()));
     }
 
     public void initialize_application() {

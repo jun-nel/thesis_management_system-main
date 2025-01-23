@@ -19,8 +19,8 @@ public class Tblstudent extends FXModel {
                 return;
             }
 
-            setGraphic(new Label(tblstudent.getSurname()));
-           
+          
+             setGraphic(new Label(tblstudent.getfullName()));
         }
     }
 
@@ -100,6 +100,12 @@ public class Tblstudent extends FXModel {
         MIProperty().set(MI);
     }
 
+
+    public String getfullName(){
+        return getFname() + ", " + getSurname() +", "+ getMI();
+    }
+
+
     @Override
     public FXModel clone() {
        Tblstudent tblstudents = new Tblstudent(getID(),
@@ -119,5 +125,6 @@ public class Tblstudent extends FXModel {
         setMI(c.getMI());
     
     }
-    
 }
+    
+

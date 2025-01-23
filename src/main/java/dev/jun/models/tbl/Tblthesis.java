@@ -13,20 +13,20 @@ public class Tblthesis  extends FXModel{
     private final FXStringProperty Title;
     private final  FXIntegerProperty Year;
     private final FXIntegerProperty Month;
-    //private final FXIntegerProperty DegID;
-    private FXObjectProperty<Degree>DegID;
+    private final FXIntegerProperty DegID;
+   // private FXObjectProperty<Degree>DegID;
 
     public Tblthesis(int ID,
         String Title,
         int Year,
         int Month,
-        Degree DegID){
+        int DegID){
      this.ID = new FXIntegerProperty(ID);
      this.Title = new FXStringProperty(Title);
      this.Year = new FXIntegerProperty(Year);
      this.Month = new FXIntegerProperty(Month);
-     this.DegID = new FXObjectProperty<>(DegID);
-     track_properties(this.DegID);
+     this.DegID = new FXIntegerProperty(DegID);
+    track_properties(this.ID, this.Title, this.Year, this.Month, this.DegID);
     }
     
     public FXIntegerProperty IDProperty(){
@@ -75,15 +75,15 @@ public class Tblthesis  extends FXModel{
         MonthProperty().set(Month);
     }
 
-    public FXObjectProperty<Degree>DegIDProperty(){
+    public FXIntegerProperty DegIDProperty(){
         return DegID;
     }
 
-    public Degree getDegID(){
+    public Integer getDegID(){
         return DegIDProperty().get();
     }
 
-    public void setDegID(Degree DegID){
+    public void setDegID(int DegID){
         DegIDProperty().set(DegID);
     }
 
@@ -98,8 +98,7 @@ public class Tblthesis  extends FXModel{
     }
 
     @Override
-    public void copy(FXModel arg0) {
-        
+    public void copy(FXModel arg0) {      
        Tblthesis c = (Tblthesis) arg0;
 
        setID(c.getID());

@@ -36,7 +36,7 @@ public class TblstudentDAO {
 
     paramlist.add(new DBParam(DBType.NUMERIC, "ID", tblstudent.getID()));
     paramlist.add(new DBParam(DBType.TEXT, "Surname", tblstudent.getSurname()));
-    paramlist.add(new DBParam(DBType.TEXT, "Fname", tblstudent.getFname()));
+    paramlist.add(new DBParam(DBType.TEXT, "FirstName", tblstudent.getFname()));
     paramlist.add(new DBParam(DBType.TEXT, "MI", tblstudent.getMI()));
 
     return paramlist.toArray(new DBParam[0]);

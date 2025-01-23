@@ -26,18 +26,19 @@ public class TblthesisDAO {
             Integer ID = crs.getInt("ID");
             String Title = crs.getString("Title");
             Integer Year = crs.getInt("Year");
-           //Integer Month = crs.getInt("Month");
+            //Integer Month = crs.getInt("Month");
             Integer Month = crs.getInt("Month");
+            Integer DegID = crs.getInt("DegID");
 
-            Degree DegID  = DEGREE_LIST.stream().filter(o -> {
-                try {
-                    return o.getDegreeID().equals(crs.getObject("DegID"));
+            // Degree DegrID  = DEGREE_LIST.stream().filter(o -> {
+            //     try {
+            //         return o.getDegreeID().equals(crs.getObject("DegID"));
                     
-                } catch (SQLException e) {
-                  e.printStackTrace();
-                  return false;
-                }
-            }).findFirst().get();
+            //     } catch (SQLException e) {
+            //       e.printStackTrace();
+            //       return false;
+            //     }
+            // }).findFirst().get();
            
 
             return new Tblthesis(ID,
@@ -80,23 +81,23 @@ public class TblthesisDAO {
         return list;
     }
 
-    public static void insert(Tblthesis tblthesis) {
-        DB.insert(TABLE, paramlist(tblthesis));
-    }
+    // public static void insert(Tblthesis tblthesis) {
+    //     DB.insert(TABLE, paramlist(tblthesis));
+    // }
 
-    public static void delete(Tblthesis tblthesis) {
-        DB.delete(TABLE, new DBParam(DBType.NUMERIC, "ID", tblthesis.getID()));
-    }
+    // public static void delete(Tblthesis tblthesis) {
+    //     DB.delete(TABLE, new DBParam(DBType.NUMERIC, "ID", tblthesis.getID()));
+    // }
 
-    public static void update(Tblthesis tblthesis) {
+    // public static void update(Tblthesis tblthesis) {
 
-        DBParam[] params = paramlist(tblthesis);
+    //     DBParam[] params = paramlist(tblthesis);
 
-        for (int i = 0; i <= 17; i++) {
-            DB.update(TABLE, new DBParam(DBType.NUMERIC, "ID",
-                    tblthesis.getID()), params[i]);
-        }
+    //     for (int i = 0; i <= 17; i++) {
+    //         DB.update(TABLE, new DBParam(DBType.NUMERIC, "ID",
+    //                 tblthesis.getID()), params[i]);
+    //     }
 
-    }
+    // }
 }
 

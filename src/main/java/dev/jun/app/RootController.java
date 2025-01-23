@@ -70,12 +70,14 @@ public class RootController extends FXController {
     private ObservableList<Tblthesis> thesis_marterlist;
     private Tblthesis selectedthesis;
     private ObservableList<Tblstudent> student_masterlist;
+    //private ObservableList<Degree> degree_masterlist;
 
     @Override
     protected void load_fields() {
         scene = (Scene) getParameter("Scene");
         student_masterlist = App.COLLECTIONS_REGISTER.getList("TBLSTUDENT");
         thesis_marterlist = App.COLLECTIONS_REGISTER.getList("TBLTHESIS");
+        //degree_masterlist= App.COLLECTIONS_REGISTER.getList("DEEGREE");
 
         RIDColumn.setCellValueFactory(cell ->cell.getValue().IDProperty().asObject());    
         AuthorColumn.setCellValueFactory(cell -> cell.getValue().SurnameProperty());  
@@ -87,9 +89,9 @@ public class RootController extends FXController {
         DegreeComboBox.setCellFactory(cell -> new Degree.LIST_CELL());
         DegreeComboBox.setButtonCell(new Degree.LIST_CELL()); 
 
-        // AuthorComboBox.setItems(App.COLLECTIONS_REGISTER.getList("TBLSTUDENT"));
-        // AuthorComboBox.setCellFactory(cell -> new Tblstudent.LIST_CELL());
-        // AuthorComboBox.setButtonCell(new Tblstudent.LIST_CELL());
+        AuthorComboBox.setItems(App.COLLECTIONS_REGISTER.getList("TBLSTUDENT"));
+        AuthorComboBox.setCellFactory(cell -> new Tblstudent.LIST_CELL());
+        AuthorComboBox.setButtonCell(new Tblstudent.LIST_CELL());
        
         
         //roleComboBox.setItems(App.COLLECTIONS_REGISTER.getList("TBLTHESISRESEARCHER"));
@@ -101,7 +103,8 @@ public class RootController extends FXController {
             joblist.size();
         } else
             MonthComboBox.setItems(joblist);
-        
+            
+            
         AuthorTableView.setItems(student_masterlist);
         ThesisTableView.setItems(thesis_marterlist);
 
@@ -110,7 +113,7 @@ public class RootController extends FXController {
             if (nv != null) {
                 IDField.setText(String.valueOf(nv.getID()));
                 ThesisTitleArea.setText(nv.getTitle());
-                YearField.setText(String.valueOf(nv.getYear()));
+                YearField.setText(String.valueOf(nv.getYear()));                
 
             } else {
                 IDField.setText("");
@@ -119,8 +122,14 @@ public class RootController extends FXController {
             }
 
             MonthComboBox.setValue(Month.fromMonth(nv.getMonth()));
-
         });
+
+        // AuthorTableView.getSelectionModel().selectedIndexProperty().addListener((o, ov, nv) -> {
+        //     if (nv != null){
+        //         AuthorComboBox.setPromptText(nv.getfullName());
+
+        //     }
+        // });
 
     }
 
@@ -142,13 +151,13 @@ public class RootController extends FXController {
 
     private void _bind_labelProperties() {
         if (selectedthesis != null) {
-            DegreeComboBox.valueProperty().bindBidirectional(selectedthesis.DegIDProperty());
+         //   DegreeComboBox.valueProperty().bindBidirectional(selectedthesis.DegIDProperty());
 
         }
     }
 
     private void reset_combobox() {
-        DegreeComboBox.getSelectionModel().selectFirst();
+       // DegreeComboBox.getSelectionModel().selectFirst();
     }
 
 }
