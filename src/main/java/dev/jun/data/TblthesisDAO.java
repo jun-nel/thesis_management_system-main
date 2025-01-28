@@ -17,29 +17,16 @@ import javafx.collections.ObservableList;
 public class TblthesisDAO {
     public static final String TABLE = "tblthesis";
     public final static DBService DB = App.DB_THESIS;
-    public static ObservableList<Degree>DEGREE_LIST =App.COLLECTIONS_REGISTER.getList("DEGREE");
+    //public static ObservableList<Degree>DEGREE_LIST =App.COLLECTIONS_REGISTER.getList("DEGREE");
     
-    
-
     public static Tblthesis data(CachedRowSet crs) {
         try {
             Integer ID = crs.getInt("ID");
             String Title = crs.getString("Title");
             Integer Year = crs.getInt("Year");
-            //Integer Month = crs.getInt("Month");
-            Integer Month = crs.getInt("Month");
+            Integer Month = crs.getInt("Month");      
             Integer DegID = crs.getInt("DegID");
 
-            // Degree DegrID  = DEGREE_LIST.stream().filter(o -> {
-            //     try {
-            //         return o.getDegreeID().equals(crs.getObject("DegID"));
-                    
-            //     } catch (SQLException e) {
-            //       e.printStackTrace();
-            //       return false;
-            //     }
-            // }).findFirst().get();
-           
 
             return new Tblthesis(ID,
                     Title,
@@ -56,11 +43,11 @@ public class TblthesisDAO {
     private static DBParam[] paramlist(Tblthesis tblthesis) {
         List<DBParam> paramlist = new LinkedList<>();
 
-        paramlist.add(new DBParam(DBType.NUMERIC, "ID", tblthesis.getID()));
+        paramlist.add(new DBParam(DBType.NUMERIC, "ID", tblthesis.getiD()));
         paramlist.add(new DBParam(DBType.TEXT, "Title", tblthesis.getTitle()));
         paramlist.add(new DBParam(DBType.NUMERIC, "Year", tblthesis.getYear()));
         paramlist.add(new DBParam(DBType.NUMERIC, "Month", tblthesis.getMonth()));
-        paramlist.add(new DBParam(DBType.NUMERIC, "DegID", tblthesis.getDegID()));
+        paramlist.add(new DBParam(DBType.NUMERIC, "DegID", tblthesis.getDegiD()));
 
         return paramlist.toArray(new DBParam[0]);
     }
@@ -80,24 +67,24 @@ public class TblthesisDAO {
         }
         return list;
     }
+    public static void insert(Tblthesis tblthesis) {
+        DB.insert(TABLE, paramlist(tblthesis));
+    }
 
-    // public static void insert(Tblthesis tblthesis) {
-    //     DB.insert(TABLE, paramlist(tblthesis));
-    // }
+    public static void delete(Tblthesis thesis) {
+        DB.delete(TABLE, new DBParam(DBType.NUMERIC, "ID", thesis.getiD()));
+    }
 
-    // public static void delete(Tblthesis tblthesis) {
-    //     DB.delete(TABLE, new DBParam(DBType.NUMERIC, "ID", tblthesis.getID()));
-    // }
+    public static void update(Tblthesis tblthesis) {
 
-    // public static void update(Tblthesis tblthesis) {
+        DBParam[] params = paramlist(tblthesis);
 
-    //     DBParam[] params = paramlist(tblthesis);
+        for (int i = 0; i <= 4; i++) {
+            DB.update(TABLE, new DBParam(DBType.NUMERIC, "ID",
+                    tblthesis.getiD()), params[i]);
+        }
 
-    //     for (int i = 0; i <= 17; i++) {
-    //         DB.update(TABLE, new DBParam(DBType.NUMERIC, "ID",
-    //                 tblthesis.getID()), params[i]);
-    //     }
+    }
 
-    // }
 }
 

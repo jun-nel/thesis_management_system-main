@@ -2,37 +2,38 @@ package dev.jun.models.tbl;
 
 import javax.management.relation.Role;
 
+import dev.jun.models.degree.Degree;
 import dev.sol.core.application.FXModel;
 import dev.sol.core.properties.beans.FXObjectProperty;
+import dev.sol.core.properties.beans.FXStringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 
 public class Tblthesisresearchers extends FXModel {
-    //   public static class LIST_CELL extends ListCell<Tblthesisresearchers> {
-    //     @Override
-    //     protected void updateItem(Tblthesisresearchers tblthesisresearchers, boolean empty){
-    //         super.updateItem(tblthesisresearchers, empty);
+      public static class LIST_CELL extends ListCell<Tblthesisresearchers> {
+        @Override
+        protected void updateItem(Tblthesisresearchers tblthesisresearchers, boolean empty){
+            super.updateItem(tblthesisresearchers, empty);
 
-    //         if (tblthesisresearchers == null || empty){
-    //             setText(null);
-    //             setGraphic(null);
-    //             return;
-    //         }
+            if (tblthesisresearchers == null || empty){
+                setText(null);
+                setGraphic(null);
+                return;
+            }
 
-    //         setGraphic(new Label(tblthesisresearchers.getRole()));
-           
-    //     }
-    // }
-
+            setGraphic(new Label(tblthesisresearchers.getRole()));
+        }
+    }
+    
     private FXObjectProperty<Tblthesis> tid;
     private FXObjectProperty<Tblstudent> rid;
-    private FXObjectProperty<Role> role;
+    private FXStringProperty role;
 
 
-    public Tblthesisresearchers(Tblthesis tid, Tblstudent rid, Role role){
+    public Tblthesisresearchers(Tblthesis tid, Tblstudent rid, String role){
         this.tid = new FXObjectProperty<>(tid);
         this.rid = new FXObjectProperty<>(rid);
-        this.role = new FXObjectProperty<>(role);
+        this.role = new FXStringProperty(role);
 
         track_properties(this.tid, this.rid, this.role);
     }
@@ -59,13 +60,13 @@ public class Tblthesisresearchers extends FXModel {
     }
 
     //role
-    public FXObjectProperty<Role> roleProperty(){
+    public FXStringProperty roleProperty(){
         return role;
     }
-    public Role getRole(){
+    public String getRole(){
         return roleProperty().get();
     }
-    public void setRole(Role role){
+    public void setRole(String role){
         roleProperty().set(role);
     }
  

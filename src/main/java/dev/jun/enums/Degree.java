@@ -1,8 +1,0 @@
-package dev.jun.enums;
-
-
-
-    
-
-    
-

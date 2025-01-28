@@ -20,37 +20,43 @@ public class Tblstudent extends FXModel {
             }
 
           
-             setGraphic(new Label(tblstudent.getfullName()));
+             setGraphic(new Label(tblstudent.getFullname()));
         }
     }
 
 
     private final FXIntegerProperty ID;
     private final FXStringProperty Surname;
-    private final FXStringProperty Fname;
+    private final FXStringProperty Firstname;
     private final FXStringProperty MI;
+    private FXStringProperty fullname;
 
     public Tblstudent(Integer ID,
                       String Surname,
-                      String Fname,
+                      String Firstname,
                       String MI){
         this.ID = new FXIntegerProperty(ID);
         this.Surname = new FXStringProperty(Surname);
-        this.Fname = new FXStringProperty(Fname);
+        this.Firstname = new FXStringProperty(Firstname);
         this.MI = new FXStringProperty(MI);
+        this.fullname = new FXStringProperty(Surname + ", " + Firstname + " " + MI);
+
+        track_properties(this.ID, this.Surname, this.Firstname, this.MI);
+
+        
     
     }
 
-    public Tblstudent(int ID,
-       String Surname,
-       String Fname,
-       String MI){
+    // public Tblstudent(int ID,
+    //    String Surname,
+    //    String Firstname,
+    //    String MI){
 
-        this.ID = new FXIntegerProperty(ID);
-        this.Surname = new FXStringProperty(Surname);
-        this.Fname = new FXStringProperty(Fname);
-        this.MI = new FXStringProperty(MI);
-    }
+    //     this.ID = new FXIntegerProperty(ID);
+    //     this.Surname = new FXStringProperty(Surname);
+    //     this.Firstname = new FXStringProperty(Firstname);
+    //     this.MI = new FXStringProperty(MI);
+    // }
 
     public FXIntegerProperty IDProperty(){
         return ID;
@@ -63,7 +69,7 @@ public class Tblstudent extends FXModel {
     public void setID(Integer ID){
         IDProperty().set(ID);
     }
-    
+    // surname
     public FXStringProperty SurnameProperty(){
         return Surname;
     }
@@ -75,19 +81,19 @@ public class Tblstudent extends FXModel {
     public void setSurname(String Surname){
         SurnameProperty().set(Surname);
     }
-
-    public FXStringProperty FnameProperty(){
-        return Fname;
+     // Firstname
+    public FXStringProperty FirstnameProperty(){
+        return Firstname;
     }
 
-    public String getFname(){
-        return FnameProperty().get();
+    public String getFirstname(){
+        return FirstnameProperty().get();
     }
 
     public void setFname(String Fname){
-        FnameProperty().set(Fname);
+        FirstnameProperty().set(Fname);
     }
-
+ // MI
     public FXStringProperty MIProperty(){
         return MI;
     }
@@ -99,10 +105,16 @@ public class Tblstudent extends FXModel {
     public void setMI(String MI){
         MIProperty().set(MI);
     }
+    public FXStringProperty fullnameProperty() {
+        return this.fullname;
+    }
+    public String getFullname() {
+        return fullnameProperty().get();
+    }
 
 
-    public String getfullName(){
-        return getFname() + ", " + getSurname() +", "+ getMI();
+    public String fullName(){
+        return SurnameProperty().get() + ", " + FirstnameProperty().get() +", "+ MIProperty().get();
     }
 
 
@@ -110,7 +122,7 @@ public class Tblstudent extends FXModel {
     public FXModel clone() {
        Tblstudent tblstudents = new Tblstudent(getID(),
           getSurname(),
-          getFname(),
+          getFirstname(),
           getMI());
      return tblstudents;
     }
@@ -121,7 +133,7 @@ public class Tblstudent extends FXModel {
 
         setID(c.getID());
         setSurname(c.getSurname());
-        setFname(c.getFname());
+        setFname(c.getFirstname());
         setMI(c.getMI());
     
     }

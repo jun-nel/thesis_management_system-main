@@ -8,13 +8,16 @@ import javax.sql.rowset.CachedRowSet;
 
 import dev.jun.App;
 import dev.jun.models.degree.Degree;
+
 import dev.sol.db.DBParam;
 import dev.sol.db.DBService;
 import dev.sol.db.DBType;
 
+
 public class DegreeDAO {
     public static String TABLE = "degree";
     public static final DBService DB = App.DB_THESIS;
+ 
 
     private static Degree data(CachedRowSet crs) {
         try {
@@ -70,7 +73,7 @@ public class DegreeDAO {
 
         DBParam[] params = paramlist(degree);
 
-        for (int i = 0; i <= 17; i++) {
+        for (int i = 0; i <= 4; i++) {
             DB.update(TABLE, new DBParam(DBType.NUMERIC, "ID",
             degree.getDegreeID()), params[i]);
         }

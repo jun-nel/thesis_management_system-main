@@ -4,6 +4,8 @@ import dev.jun.app.RootLoader;
 import dev.jun.data.DegreeDAO;
 import dev.jun.data.TblstudentDAO;
 import dev.jun.data.TblthesisDAO;
+import dev.jun.data.TblthesisresearchersDAO;
+import dev.jun.models.tbl.Tblthesisresearchers;
 import dev.sol.core.application.FXApplication;
 import dev.sol.core.application.loader.FXLoaderFactory;
 import dev.sol.core.registry.FXCollectionsRegister;
@@ -23,9 +25,9 @@ public class App extends FXApplication {
 
     @Override
     public void initialize() throws Exception  {
-        setTitle("Thesis Main");
+        setTitle("Thesis ");
         setSkin(FXSkin.CUPERTINO_LIGHT);
-       // applicationStage.setResizable(false);
+        applicationStage.setResizable(false);
 
         initialize_dataset();
         initialize_application();
@@ -34,11 +36,11 @@ public class App extends FXApplication {
 
     public void initialize_dataset() {
 
-       COLLECTIONS_REGISTER.register("TBLSTUDENT", FXCollections.observableArrayList(TblstudentDAO.getTblstudentlist()));
-
+        COLLECTIONS_REGISTER.register("STUDENT", FXCollections.observableArrayList(TblstudentDAO.getTblstudentlist()));
+        COLLECTIONS_REGISTER.register("THESIS", FXCollections.observableArrayList(TblthesisDAO.getTblthesislist()));
+        COLLECTIONS_REGISTER.register("RESEARCHER",FXCollections.observableArrayList(TblthesisresearchersDAO.getTblthesisresearcherslList()));
         COLLECTIONS_REGISTER.register("DEGREE", FXCollections.observableArrayList(DegreeDAO.getDegreelist()));
-        
-        COLLECTIONS_REGISTER.register("TBLTHESIS", FXCollections.observableList(TblthesisDAO.getTblthesislist()));
+          
     }
 
     public void initialize_application() {

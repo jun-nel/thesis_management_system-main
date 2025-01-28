@@ -23,7 +23,7 @@ public class TblstudentDAO {
         String FirstName  = crs.getString("FirstName");
         String MI = crs.getString("MI");
 
-        return new Tblstudent(ID, Surname, Surname, MI);
+        return new Tblstudent(ID, Surname, FirstName, MI);
 
     } catch (Exception e){
         e.printStackTrace();
@@ -36,7 +36,7 @@ public class TblstudentDAO {
 
     paramlist.add(new DBParam(DBType.NUMERIC, "ID", tblstudent.getID()));
     paramlist.add(new DBParam(DBType.TEXT, "Surname", tblstudent.getSurname()));
-    paramlist.add(new DBParam(DBType.TEXT, "FirstName", tblstudent.getFname()));
+    paramlist.add(new DBParam(DBType.TEXT, "FirstName", tblstudent.getFirstname()));
     paramlist.add(new DBParam(DBType.TEXT, "MI", tblstudent.getMI()));
 
     return paramlist.toArray(new DBParam[0]);
